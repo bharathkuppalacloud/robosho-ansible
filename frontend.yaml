@@ -1,4 +1,5 @@
 - name: Fronted Playbook
   hosts: all
+  become: true # whole play will run as sudo user
   roles:
     - frontend
