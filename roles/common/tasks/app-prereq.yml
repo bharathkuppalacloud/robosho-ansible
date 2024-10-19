@@ -4,6 +4,10 @@
 #useradd roboshop &>>LOG_FILE
 #fi
 #SUCCESS $?
+- name: Print a variable
+  ansible.builtin.debug:
+    msg: "The value of app_path is:{{ app_path }} component {{ component }}"
+
 
 - name: Create a user 'Roboshop' with a home directory
   ansible.builtin.user:
@@ -23,5 +27,5 @@
 - name: Download & Extract Application Content
   ansible.builtin.unarchive:
     src: https://roboshop-artifacts.s3.amazonaws.com/{{component}}-v3.zip
-    dest: "{{app_path}}"
+    dest: "{{ app_path }}"
     remote_src: yes
