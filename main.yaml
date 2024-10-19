@@ -2,4 +2,4 @@
   hosts: all
   become: true # whole play will run as sudo user
   roles:
-    - frontend
+    - {{ role_name }}
