@@ -11,12 +11,12 @@
     create_home: yes
 
 - name: Remove Old Content
-  ansible.builtin.path:
+  ansible.builtin.file:
     path: "{{ app_path }}"
     state: absent
 
 - name: Create App Directory
-  ansible.builtin.path:
+  ansible.builtin.file:
     path: "{{ app_path }}"
     state: directory
 
