@@ -12,7 +12,6 @@
 - name: Create a user 'Roboshop' with a home directory
   ansible.builtin.user:
     name: roboshop
-    create_home: yes
 
 - name: Remove Old Content
   ansible.builtin.file:
