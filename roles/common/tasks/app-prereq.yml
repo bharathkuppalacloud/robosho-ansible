@@ -1,0 +1,26 @@
+#PRINT add User
+#id roboshop &>>LOG_FILE
+#if [ $? -ne 0 ]; then
+#useradd roboshop &>>LOG_FILE
+#fi
+#SUCCESS $?
+
+- name: Create a user 'Roboshop' with a home directory
+  ansible.builtin.user:
+    name: roboshop
+    create_home: yes
+
+- name: Remove Old Content
+  ansible.builtin.path:
+    path: "{{ app_path }}"
+    state: absent
+
+- name: Create App Directory
+  ansible.builtin.path:
+    path: "{{ app_path }}"
+    state: directory
+
+- name: Download & Extract Application Content
+  ansible.builtin.unarchive:
+    src: https://roboshop-artifacts.s3.amazonaws.com/{{component}}-v3.zip
+    dest: "{{app_path}}"

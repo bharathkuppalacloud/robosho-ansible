@@ -15,6 +15,11 @@
     src: nginx.conf
     dest: /etc/nginx/nginx.conf
 
+- name: Set app Prerequsites
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app-prereq
+
 - name: Start nginx
   ansible.builtin.systemd_service:
     state: restarted
