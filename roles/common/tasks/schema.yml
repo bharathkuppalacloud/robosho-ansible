@@ -1,0 +1,18 @@
+- name: Load MongoDB schema
+  when: schema_setup == "mongo"
+  block:
+    - name: COpy MongoDB repo file
+      ansible.builtin.template:
+        src: mongo.repo
+        dest: /etc/yum.repos.d/mongo.repo
+
+    - name: Install MongoDB Client
+      ansible.builtin.dnf:
+        name: mongodb-mongosh
+        state: latest
+
+    - name: Load Master Data
+      ansible.builtin.shell: mongosh --host  172.31.34.253 </app/db/{{ item }}.js
+
+
+
