@@ -15,8 +15,8 @@
     src: nginx.conf
     dest: /etc/nginx/nginx.conf
 
-- name: Set app Prerequsites
-  ansible.builtin.import_role:
+- name: Setup App Prerequisites
+  ansible.builtin.include_role:
     name: common
     tasks_from: app-prereq
 
