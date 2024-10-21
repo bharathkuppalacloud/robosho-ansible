@@ -1,4 +1,4 @@
-- name: Fronted Playbook
+- name: The Roboshop  Playbook
   hosts: all
   become: true # whole play will run as sudo user
   roles:

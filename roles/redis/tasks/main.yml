@@ -1,0 +1,25 @@
+- name: Disable Default Redis module
+  ansible.builtin.shell: dnf module disable redis -y
+
+- name: Enable  Redis module
+  ansible.builtin.shell: dnf module enable redis:7 -y
+
+
+- name: Install Redis
+  ansible.builtin.dnf:
+    name: redis
+    state: latest
+
+
+- name: Replace old hostname with new hostname 127.0.0.1 to 0.0.0.0
+  ansible.builtin.replace:
+    path: /etc/redis/redis.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+- name: Disable Redis protected mode
+  ansible.builtin.lineinfile:
+      path: /etc/redis/redis.conf
+      regexp: '^protected-mode'
+      line: 'protected-mode no'
+      backup: yes  # Optional: create a backup before modifying
