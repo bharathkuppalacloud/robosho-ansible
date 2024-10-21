@@ -12,7 +12,7 @@
     state: latest
 
 - name: Load Master Data
-  ansible.builtin.shell: mongosh --host  172.31.34.253 </app/db/{{ item }}.js
+  ansible.builtin.shell: mongosh --host  mongo.dev.codedeploywithbharath.tech </app/db/master-data.js
 
 
 
