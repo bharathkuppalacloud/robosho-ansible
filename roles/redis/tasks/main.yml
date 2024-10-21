@@ -23,3 +23,9 @@
       regexp: '^protected-mode'
       line: 'protected-mode no'
       backup: yes  # Optional: create a backup before modifying
+
+- name: Start Service
+  ansible.builtin.systemd_service:
+    name: redis
+    state: restarted
+    enabled: true
